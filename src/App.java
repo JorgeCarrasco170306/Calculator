@@ -44,7 +44,7 @@ public class App extends JFrame implements ActionListener {
             buttonPanel.add(b);
         }
 
-        add(buttonPanel, BorderLayout.NORTH);
+        add(buttonPanel, BorderLayout.CENTER);
 
     }
 
