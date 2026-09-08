@@ -1,18 +1,25 @@
-## Getting Started
+# Java Swing Calculator
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Una calculadora de escritorio sencilla y funcional desarrollada en Java utilizando la biblioteca gráfica **Swing**. El proyecto implementa operaciones aritméticas básicas mediante una interfaz intuitiva organizada con gestores de diseño (`BorderLayout` y `GridLayout`).
 
-## Folder Structure
+---
 
-The workspace contains two folders by default, where:
+## Características
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- **Operaciones básicas:** Suma (`+`), resta (`-`), multiplicación (`*`) y división (`/`).
+- **Manejo de errores:** Validación para división entre cero (muestra `Error`).
+- **Limpieza de pantalla:** Botón `C` para reiniciar el estado y los valores almacenados.
+- **Formato limpio:** Oculta decimales redundantes cuando el resultado es un número entero exacto (muestra `8` en vez de `8.0`).
+- **Interfaz adaptada:** Ejecución sobre el *Event Dispatch Thread* (`SwingUtilities.invokeLater`) para garantizar estabilidad visual.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+---
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Estructura del Proyecto
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+```text
+.
+├── bin/          # Archivos compilados (.class)
+├── lib/          # Dependencias externas (no requeridas para este proyecto)
+├── src/
+│   └── App.java  # Código fuente principal de la aplicación
+└── README.md
