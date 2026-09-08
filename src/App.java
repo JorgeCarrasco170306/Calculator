@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicArrowButton;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -49,10 +48,63 @@ public class App extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+        String comando = e.getActionCommand();
+
+        // Si es un número
+        if (comando.charAt(0) >= '0' && comando.charAt(0) <= '9') {
+            screen.setText(screen.getText() + comando);
+            return;
+        }
+
+        // Limpiar screen
+        if (comando.equals("C")) {
+            screen.setText("");
+            num1 = num2 = result = 0;
+            operator = ' ';
+            return;
+        }
+
+        // Ejecutar cálculo
+        if (comando.equals("=")) {
+            if (!screen.getText().isEmpty() && operator != ' ') {
+                num2 = Double.parseDouble(screen.getText());
+                switch (operator) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        if (num2 != 0) {
+                            result = num1 / num2;
+                        } else {
+                            screen.setText("Error");
+                            return;
+                        }
+                        break;
+                }
+                screen.setText(String.valueOf(result));
+                operator = ' ';
+            }
+            return;
+        }
+
+        // Guardar operator y primer número
+        if (!screen.getText().isEmpty()) {
+            num1 = Double.parseDouble(screen.getText());
+            operator = comando.charAt(0);
+            screen.setText("");
+        }
     }
 
-    public static void main(String[] args) throws Exception {
-        new App();
+    public static void main(String[] args) {
+        // Asegura que la interfaz corra en el Event Dispatch Thread
+        SwingUtilities.invokeLater(() -> {
+            new App().setVisible(true);
+        });
     }
 }
