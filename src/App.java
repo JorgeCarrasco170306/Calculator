@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicArrowButton;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +21,29 @@ public class App extends JFrame implements ActionListener {
 
         screen = new JTextField();
         screen.setEditable(false);
-        
+        screen.setFont(new Font("Monospaced", Font.BOLD, 28));
+        screen.setHorizontalAlignment(JTextField.RIGHT);
+        screen.setBackground(new Color(230, 230, 230));
+
+        add(screen, BorderLayout.NORTH);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4, 4, 8, 8));
+
+        String[] buttons = {
+                "7", "8", "9", "/",
+                "4", "5", "6", "*",
+                "1", "2", "3", "-",
+                "C", "0", "=", "+"
+        };
+
+        for (String button : buttons) {
+            JButton b = new JButton(button);
+            b.setFont(new Font("Arial", Font.BOLD, 20));
+            b.setFocusPainted(false);
+            b.addActionListener(this);
+            buttonPanel.add(b);
+        }
 
     }
 
@@ -29,6 +53,6 @@ public class App extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) throws Exception {
-
+        new App();
     }
 }
